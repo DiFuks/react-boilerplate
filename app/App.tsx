@@ -1,8 +1,14 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-import { Main } from '@app/Main/Main';
+import { history, store } from '@app/store';
+import { Router } from '@app/features/Router/Router';
 
-export const App: React.FC = hot(() => (
-  <Main/>
-));
+export const App: React.FC = () => (
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Router/>
+    </ConnectedRouter>
+  </Provider>
+);
