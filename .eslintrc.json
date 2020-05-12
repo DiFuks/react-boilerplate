@@ -101,6 +101,7 @@
       "default": "array-simple",
       "readonly": "array-simple"
     }],
-    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }]
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "sonarjs/no-small-switch": ["off"]
   }
 }

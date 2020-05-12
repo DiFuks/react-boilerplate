@@ -1,14 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { Main } from '@app/features/Main/Main';
+import { Todo } from '@app/features/Todo/Todo';
 
 export const PageMain: React.FC = () => (
   <div>
     <Helmet>
       <title>Main page</title>
     </Helmet>
-    <Main/>
+    <Todo/>
   </div>
 );
 

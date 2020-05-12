@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 const path = require('path');
+const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -8,6 +9,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
+const Dotenv = require('dotenv-webpack');
 
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
@@ -70,6 +72,7 @@ module.exports = (env, options) => {
         failOnError: true,
         cwd: process.cwd(),
       }),
+      new Dotenv(),
       ...(!isDevServer ? [
         new CleanWebpackPlugin(),
       ] : []),
@@ -89,5 +92,16 @@ module.exports = (env, options) => {
       historyApiFallback: true,
       hot: true,
     },
+    stats: {
+      builtAt: true,
+      errors: true,
+      assets: false,
+      entrypoints: false,
+      children: false,
+      chunks: false,
+      chunkGroups: false,
+      modules: false,
+      version: false,
+    }
   }
 }
