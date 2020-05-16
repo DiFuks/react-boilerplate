@@ -77,7 +77,7 @@
       "children": "never"
     }],
     "react/jsx-boolean-value": ["error", "always"],
-    "react/jsx-first-prop-new-line": ["error", "multiline-multiprop"],
+    "react/jsx-first-prop-new-line": ["error", "multiline"],
     "react/jsx-max-props-per-line": ["error", { "maximum": 1 }],
     "react/jsx-closing-tag-location": ["error"],
     "react/jsx-tag-spacing": ["error", {
@@ -96,6 +96,10 @@
       "prop": "parens-new-line"
     }],
     "react/jsx-fragments": ["error", "syntax"],
+    "react/jsx-closing-bracket-location": ["error", "line-aligned"],
+    "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
+    "react/jsx-indent": ["error", 2],
+    "react/self-closing-comp": ["error"],
     "no-param-reassign": "error",
     "@typescript-eslint/array-type": ["error", {
       "default": "array-simple",
