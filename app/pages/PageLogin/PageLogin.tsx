@@ -1,15 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { LoginForm } from '@app/features/LoginForm/LoginForm';
+import { Login } from '@app/features/Login/Login';
 
 export const PageLogin: React.FC = () => (
-  <div>
+  <>
     <Helmet>
       <title>Main page</title>
     </Helmet>
-    <LoginForm/>
-  </div>
+    <Login/>
+  </>
 );
 
 export { PageLogin as default };
