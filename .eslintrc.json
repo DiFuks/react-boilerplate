@@ -46,7 +46,7 @@
     "import/first": ["error"],
     "@typescript-eslint/interface-name-prefix": ["error", "always"],
     "object-curly-spacing": ["error", "always"],
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "ignoredNodes": ["JSXElement", "JSXElement *", "JSXAttribute"] }],
     "newline-after-var": ["error", "always"],
     "newline-before-return": "error",
     "no-console": "error",
@@ -99,6 +99,7 @@
     "react/jsx-closing-bracket-location": ["error", "line-aligned"],
     "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }],
     "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", 2],
     "react/self-closing-comp": ["error"],
     "no-param-reassign": "error",
     "@typescript-eslint/array-type": ["error", {
