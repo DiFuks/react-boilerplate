@@ -36,7 +36,7 @@ const HeaderStyled = styled.div`
   background: ${themeSelector.primaryMain};
   width: 80%;
   border-radius: 3px;
-  color: ${themeSelector.contrastText};
+  color: ${themeSelector.textContrast};
   text-align: center;
   padding: 20px 0;
   font-weight: 100;

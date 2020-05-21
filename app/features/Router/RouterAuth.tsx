@@ -1,10 +1,9 @@
-import React, { lazy } from 'react';
-import { Route, Switch } from 'react-router';
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router';
 
 import { TemplateAuth } from '@app/features/TemplateAuth/TemplateAuth';
 import { RoutesPaths } from '@app/common/enums/RoutesPaths';
-
-const PageLogin = lazy(() => import('@app/pages/PageLogin/PageLogin'));
+import { PageLogin } from '@app/pages/PageLogin';
 
 export const RouterAuth: React.FC = () => (
   <TemplateAuth>
@@ -14,8 +13,7 @@ export const RouterAuth: React.FC = () => (
         component={PageLogin}
         exact={true}
       />
+      <Redirect to={RoutesPaths.LOGIN}/>
     </Switch>
   </TemplateAuth>
 );
-
-export { RouterAuth as default };

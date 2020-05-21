@@ -4,6 +4,7 @@ import { connectRouter, RouterState } from 'connected-react-router';
 import { Reducer } from 'redux';
 
 import { reducer as loginForm } from '@app/features/Login/@slice';
+import { reducer as blackList } from '@app/features/BlackList/@slice';
 
 export const history = createBrowserHistory();
 
@@ -12,6 +13,7 @@ const middleware = getDefaultMiddleware({ thunk: true });
 const reducer = {
   router: connectRouter(history) as Reducer<RouterState>,
   loginForm,
+  blackList,
 };
 
 const store = configureStore({

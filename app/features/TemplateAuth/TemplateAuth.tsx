@@ -10,12 +10,14 @@ export const TemplateAuth: React.FC = ({ children }) => (
       ©
       {' '}
       {(new Date().getFullYear())}
+      {' '}
+      IVR + DF
     </FooterStyled>
   </TemplateStyled>
 );
 
 const TemplateStyled = styled.div`
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: ${themeSelector.background};
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -32,5 +34,5 @@ const MainStyled = styled.main`
 const FooterStyled = styled.footer`
   text-align: center;
   height: 50px;
-  color: ${themeSelector.contrastText};
+  color: ${themeSelector.textContrast};
 `;

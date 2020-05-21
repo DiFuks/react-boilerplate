@@ -1,8 +1,9 @@
-import React, { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router';
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router';
 
-const RouterAuth = lazy(() => import('@app/features/Router/RouterAuth'));
-const RouterMain = lazy(() => import('@app/features/Router/RouterMain'));
+import { auth } from '@app/common/utils/auth';
+import { RouterAuth } from '@app/features/Router/RouterAuth';
+import { RouterMain } from '@app/features/Router/RouterMain';
 
 enum RoutesPathsBase {
   MAIN = '/',
@@ -10,16 +11,22 @@ enum RoutesPathsBase {
 }
 
 export const Router: React.FC = () => (
-  <Suspense fallback=''>
-    <Switch>
-      <Route
-        path={RoutesPathsBase.AUTH}
-        component={RouterAuth}
-      />
-      <Route
-        path={RoutesPathsBase.MAIN}
-        component={RouterMain}
-      />
-    </Switch>
-  </Suspense>
+  <Switch>
+    <Route
+      path={RoutesPathsBase.AUTH}
+      component={() => !auth.isAuth() ? (
+        <RouterAuth/>
+      ) : (
+        <Redirect to={RoutesPathsBase.MAIN}/>
+      )}
+    />
+    <Route
+      path={RoutesPathsBase.MAIN}
+      component={() => auth.isAuth() ? (
+        <RouterMain/>
+      ) : (
+        <Redirect to={RoutesPathsBase.AUTH}/>
+      )}
+    />
+  </Switch>
 );

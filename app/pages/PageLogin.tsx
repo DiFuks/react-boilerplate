@@ -6,10 +6,8 @@ import { Login } from '@app/features/Login/Login';
 export const PageLogin: React.FC = () => (
   <>
     <Helmet>
-      <title>Main page</title>
+      <title>Главная страница</title>
     </Helmet>
     <Login/>
   </>
 );
-
-export { PageLogin as default };

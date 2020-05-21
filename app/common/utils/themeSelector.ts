@@ -6,5 +6,7 @@ interface IProps {
 
 export const themeSelector = {
   primaryMain: (props: IProps) => props.theme.palette.primary.main,
-  contrastText: (props: IProps) => props.theme.palette.primary.contrastText,
+  textContrast: (props: IProps) => props.theme.palette.primary.contrastText,
+  textPrimary: (props: IProps) => props.theme.palette.text.primary,
+  background: (props: IProps) => props.theme.palette.grey['800'],
 };

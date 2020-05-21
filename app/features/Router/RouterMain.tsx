@@ -1,10 +1,10 @@
-import React, { lazy } from 'react';
-import { Route, Switch } from 'react-router';
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router';
 
 import { TemplateMain } from '@app/features/TemplateMain/TemplateMain';
 import { RoutesPaths } from '@app/common/enums/RoutesPaths';
-
-const PageMain = lazy(() => import('@app/pages/PageMain/PageMain'));
+import { PageMain } from '@app/pages/PageMain';
+import { PageBlackList } from '@app/pages/PageBlackList';
 
 export const RouterMain: React.FC = () => (
   <TemplateMain>
@@ -14,8 +14,12 @@ export const RouterMain: React.FC = () => (
         component={PageMain}
         exact={true}
       />
+      <Route
+        path={RoutesPaths.BLACK_LIST}
+        component={PageBlackList}
+        exact={true}
+      />
+      <Redirect to={RoutesPaths.MAIN}/>
     </Switch>
   </TemplateMain>
 );
-
-export { RouterMain as default };

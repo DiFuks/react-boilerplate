@@ -107,6 +107,7 @@
       "readonly": "array-simple"
     }],
     "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
-    "sonarjs/no-small-switch": ["off"]
+    "sonarjs/no-small-switch": ["off"],
+    "@typescript-eslint/camelcase": ["error", { "properties": "never" }]
   }
 }

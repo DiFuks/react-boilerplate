@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 const path = require('path');
-const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -56,6 +55,13 @@ module.exports = (env, options) => {
             })
           }
         }]
+      }, {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       }]
     },
     plugins: [

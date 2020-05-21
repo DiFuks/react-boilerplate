@@ -1,13 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import HttpStatusCodes from 'http-status-codes';
 
-import { IResponse } from '@app/common/api/response/IResponse';
+import { IResult } from '@app/common/api/response/IResponse';
+import { IFetchResponse } from '@app/common/api/api';
 
-export interface IAsyncAction<T> {
-  data: T;
-}
-
-export interface IAsyncErrorAction {
+export interface IAsyncError {
   error: string;
 }
 
@@ -19,32 +16,33 @@ const getErrorText = (statusCode: number) => {
   return 'Произошла неизвестная ошибка';
 };
 
-export const asyncThunkBase = <RQ, RS>(prefix: string, method: (request: RQ) => Promise<Response>) => (
-  createAsyncThunk(prefix, async (request: RQ, thunkAPI) => {
-    try {
-      const response = await method(request);
+export const asyncThunkBase = <RS, RQ = undefined>(
+  prefix: string,
+  method: (request: RQ) => Promise<IFetchResponse<RS>>,
+) => (
+    createAsyncThunk<IResult<RS>, RQ, { rejectValue: IAsyncError }>(prefix, async (request: RQ, thunkAPI) => {
+      try {
+        const response = await method(request);
 
-      const data: IResponse<RS> = await response.json();
+        const data = await response.json();
 
-      const action: IAsyncAction<RS> = {
-        data: data.result.data,
-      };
+        const action = data.result;
 
-      if (response.status === HttpStatusCodes.OK || response.status === HttpStatusCodes.CREATED) {
-        return action;
+        if (response.status === HttpStatusCodes.OK || response.status === HttpStatusCodes.CREATED) {
+          return action;
+        }
+
+        const errorAction: IAsyncError = {
+          error: getErrorText(response.status),
+        };
+
+        return thunkAPI.rejectWithValue(errorAction);
+      } catch (e) {
+        const errorAction: IAsyncError = {
+          error: 'Произошла неизвестная ошибка',
+        };
+
+        return thunkAPI.rejectWithValue(errorAction);
       }
-
-      const errorAction: IAsyncErrorAction = {
-        error: getErrorText(response.status),
-      };
-
-      return thunkAPI.rejectWithValue(errorAction);
-    } catch (e) {
-      const errorAction: IAsyncErrorAction = {
-        error: 'Произошла неизвестная ошибка',
-      };
-
-      return thunkAPI.rejectWithValue(errorAction);
-    }
-  })
-);
+    })
+  );
