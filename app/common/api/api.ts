@@ -7,6 +7,7 @@ import { IToken } from '@app/common/api/response/IToken';
 import { IBlackList } from '@app/common/api/response/IBlackList';
 import { IPagination } from '@app/common/api/request/IPagination';
 import { RecursivePartial } from '@app/common/utils/recursivePartial';
+import { auth } from '@app/common/utils/auth';
 
 export interface IFetchResponse<T> extends Response {
   json(): Promise<IResponse<T>>;
@@ -21,7 +22,7 @@ const fetchMain = <T>(route: string, options: RequestInit = {}): Promise<IFetchR
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': `Token bpTPbyZQpc7vYCZz`, // TODO заменить на получение токена из auth-сервиса
+    'Authorization': `Token ${auth.token()}`,
   };
 
   return fetch(`${process.env.API_URL}${route}`, defaultsDeep(options, {
