@@ -11,7 +11,7 @@ export const TemplateAuth: React.FC = ({ children }) => (
       {' '}
       {(new Date().getFullYear())}
       {' '}
-      IVR + DF
+      DF
     </FooterStyled>
   </TemplateStyled>
 );

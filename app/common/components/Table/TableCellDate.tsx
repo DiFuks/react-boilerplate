@@ -3,7 +3,7 @@ import { TableCell } from '@material-ui/core';
 import moment from 'moment';
 
 export interface IProps {
-  children: string;
+  children?: string;
 }
 
 export const TableCellDate: React.FC<IProps> = ({ children }) => (

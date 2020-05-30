@@ -38,10 +38,11 @@ const HeaderStyled = styled.div`
   border-radius: 3px;
   color: ${themeSelector.textContrast};
   text-align: center;
-  padding: 20px 0;
+  padding: 20px 20px;
   font-weight: 100;
   transform: translateY(-15px);
   margin: auto;
+  box-sizing: border-box;
 `;
 
 const CardActionsStyled = styled(CardActions)`

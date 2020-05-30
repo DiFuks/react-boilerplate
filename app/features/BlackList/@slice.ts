@@ -8,6 +8,7 @@ export const { asyncActions, actions, reducer } = createCrudSlice<IBlackList>({
   fetchers: {
     read: api.blackList.read,
     update: api.blackList.update,
+    create: api.blackList.create,
   },
 });
 

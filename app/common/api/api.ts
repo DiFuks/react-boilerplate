@@ -6,6 +6,7 @@ import { ILogin } from '@app/common/api/request/ILogin';
 import { IToken } from '@app/common/api/response/IToken';
 import { IBlackList } from '@app/common/api/response/IBlackList';
 import { IPagination } from '@app/common/api/request/IPagination';
+import { RecursivePartial } from '@app/common/utils/recursivePartial';
 
 export interface IFetchResponse<T> extends Response {
   json(): Promise<IResponse<T>>;
@@ -40,8 +41,14 @@ export const api = {
       })
     ),
     update: (data: IBlackList) => (
-      fetchMain<IResponse<IBlackList>>(Routes.BLACK_LIST, {
+      fetchMain<IResponse<IBlackList>>(`${Routes.BLACK_LIST}/${data.id}`, {
         method: 'PATCH',
+        body: JSON.stringify(data),
+      })
+    ),
+    create: (data: RecursivePartial<IBlackList>) => (
+      fetchMain<IResponse<IBlackList>>(Routes.BLACK_LIST, {
+        method: 'POST',
         body: JSON.stringify(data),
       })
     ),

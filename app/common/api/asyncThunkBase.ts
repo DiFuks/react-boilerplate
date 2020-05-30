@@ -13,6 +13,10 @@ const getErrorText = (statusCode: number) => {
     return 'Неверный логин или пароль';
   }
 
+  if (statusCode === HttpStatusCodes.BAD_REQUEST) {
+    return 'Проверьте правильность введенных данных';
+  }
+
   return 'Произошла неизвестная ошибка';
 };
 

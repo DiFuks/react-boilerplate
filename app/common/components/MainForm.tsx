@@ -7,7 +7,7 @@ import { MainCard } from '@app/common/components/MainCard';
 export interface IProps<T> extends FormProps<T> {
   title?: string;
   actions?: ReactNode;
-  children: ReactNode[];
+  children: ReactNode[] | ReactNode;
 }
 
 export const MainForm: <FormValues = AnyObject>(props: IProps<FormValues>) => React.ReactElement = ({
@@ -29,7 +29,7 @@ export const MainForm: <FormValues = AnyObject>(props: IProps<FormValues>) => Re
             container={true}
             spacing={2}
           >
-            {children.map((field, idx) => (
+            {Array.isArray(children) ? children.map((field, idx) => (
               <Grid
                 item={true}
                 xs={12}
@@ -37,7 +37,14 @@ export const MainForm: <FormValues = AnyObject>(props: IProps<FormValues>) => Re
               >
                 {field}
               </Grid>
-            ))}
+            )) : (
+              <Grid
+                item={true}
+                xs={12}
+              >
+                {children}
+              </Grid>
+            )}
           </Grid>
         </MainCard>
       </form>
