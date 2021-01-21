@@ -25,7 +25,7 @@
     "history": "^4.10.1",
     "html-webpack-plugin": "^4.3.0",
     "http-status-codes": "^1.4.0",
-    "immer": "^6.0.5",
+    "immer": "^8.0.1",
     "lodash": "^4.17.15",
     "moment": "^2.26.0",
     "mui-rff": "^2.1.15",
